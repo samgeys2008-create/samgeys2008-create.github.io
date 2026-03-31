@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Nebula Flow | Futuristische 3D Ervaring</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="overlay">
+        <h1 class="glitch" data-text="NEBULA FLOW">NEBULA FLOW</h1>
+        <p>Interactieve 3D-ervaring | Beweeg je muis</p>
+        <div class="cursor-glow"></div>
+        <button id="toggleParticles" class="cool-btn">✦ DEELTJES STOP ✦</button>
+    </div>
+    
+    <!-- Three.js en add-ons via CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
