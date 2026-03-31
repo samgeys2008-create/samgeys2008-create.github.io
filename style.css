@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+}
+
+/* Canvas (Three.js) */
+canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Overlay tekst */
+.overlay {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    pointer-events: auto;
+    mix-blend-mode: exclusion;
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    position: relative;
+    text-transform: uppercase;
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+    animation: glitch-skew 3s infinite linear alternate-reverse;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: cyan;
+    z-index: -1;
+    animation: glitch-anim 0.3s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-2px, -2px);
+}
+
+.glitch::after {
+    color: magenta;
+    z-index: -2;
+    animation: glitch-anim2 0.3s infinite linear alternate-reverse;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translate(2px, 2px);
+}
+
+@keyframes glitch-anim {
+    0% { clip-path: polygon(0 0%, 100% 0%, 100% 5%, 0 5%); transform: translate(-2px, -2px); }
+    100% { clip-path: polygon(0 40%, 100% 40%, 100% 45%, 0 45%); transform: translate(1px, 1px); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip-path: polygon(0 85%, 100% 85%, 100% 90%, 0 90%); transform: translate(2px, 2px); }
+    100% { clip-path: polygon(0 55%, 100% 55%, 100% 60%, 0 60%); transform: translate(-1px, -1px); }
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(0deg); }
+    20% { transform: skew(2deg); }
+    40% { transform: skew(-2deg); }
+    60% { transform: skew(1deg); }
+    80% { transform: skew(-1deg); }
+    100% { transform: skew(0deg); }
+}
+
+p {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    margin-top: 1rem;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* Coole knop */
+.cool-btn {
+    margin-top: 3rem;
+    padding: 12px 28px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 40px;
+    font-size: 0.9rem;
+}
+
+.cool-btn:hover {
+    background: white;
+    color: black;
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    border-color: white;
+    transform: scale(1.05);
+}
+
+/* Aangepaste cursor-glow */
+.cursor-glow {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: 0.05s linear;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    p { letter-spacing: 0.2em; font-size: 0.8rem; }
+    .cool-btn { padding: 8px 20px; font-size: 0.7rem; }
+}
